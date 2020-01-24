@@ -1,0 +1,221 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm' version '1.3.61'
+    id 'com.jfrog.bintray' version '1.8.4'
+    id 'maven'
+    id 'org.jetbrains.dokka' version '0.9.18'
+    id 'org.ajoberstar.git-publish' version '2.1.1'
+}
+
+group 'br.com.gamemods'
+version '0.0.1-SNAPSHOT'
+
+sourceSets.main.java.srcDirs = ["src/main/kotlin"]
+
+sourceCompatibility = 1.8
+targetCompatibility = sourceCompatibility
+
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-reflect'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.allWarningsAsErrors = true
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.allWarningsAsErrors = true
+}
+
+install {
+    repositories.mavenInstaller {
+        pom.project {
+            packaging 'jar'
+            groupId project.group
+            artifactId project.name
+            version project.version
+            name project.name
+            description "Provides a standard way to manipulate different Minecraft save level formats"
+            url "https://github.com/GameModsBR/Level-Manipulator-Interface"
+            inceptionYear '2020'
+            licenses {
+                license {
+                    name 'MIT'
+                    url 'https://raw.githubusercontent.com/GameModsBR/Level-Manipulator-Interface/master/LICENSE'
+                    distribution 'repo'
+                }
+            }
+            developers {
+                developer {
+                    id = 'joserobjr'
+                    name = 'José Roberto de Araújo Júnior'
+                    email = 'joserobjr@gamemods.com.br'
+                }
+            }
+            scm {
+                connection "https://github.com/GameModsBR/Level-Manipulator-Interface.git"
+                developerConnection "https://github.com/GameModsBR/Level-Manipulator-Interface.git"
+                url "https://github.com/GameModsBR/Level-Manipulator-Interface"
+            }
+        }
+    }
+}
+
+if (!ext.has('gamemodsBintrayUser')) {
+    ext.gamemodsBintrayUser = ""
+}
+if (!ext.has('gamemodsBintrayApiKey')) {
+    ext.gamemodsBintrayApiKey = ""
+}
+
+bintray {
+    user = "$gamemodsBintrayUser"
+    key = "$gamemodsBintrayApiKey"
+    configurations = ['archives']
+    pkg {
+        repo = 'GameMods'
+        name = 'Level-Manipulator-Interface'
+        userOrg = 'gamemods'
+        licenses = ['MIT']
+        vcsUrl = 'https://github.com/GameModsBR/Level-Manipulator-Interface.git'
+        websiteUrl = 'https://github.com/GameModsBR/Level-Manipulator-Interface'
+        //publish = false
+        version {
+            name = project.version
+            desc = "Level-Manipulator-Interface version ${project.version}"
+            //released = new Date()
+            vcsTag = "v${project.version}"
+            gpg {
+                sign = !project.hasProperty('binariesOnly') //Determines whether to GPG sign the files. The default is false
+                //passphrase = '123' //Optional. The passphrase for GPG signing'
+            }
+        }
+    }
+}
+
+task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'javadoc'
+    outputDirectory = "$buildDir/javadoc"
+}
+
+
+task dokkaKdoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
+    outputFormat = 'gfm'
+    outputDirectory = "$buildDir/kdoc"
+}
+
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.file.StandardCopyOption
+task createReadmeFiles(dependsOn: dokkaKdoc) {
+    doFirst {
+        Files.walk(Paths.get(dokkaKdoc.outputDirectory))
+                .filter { it.getFileName().toString().toLowerCase() == "index.md" }
+                .forEach {
+                    try {
+                        Files.copy(it, it.resolveSibling("README.md"), StandardCopyOption.REPLACE_EXISTING)
+                    } catch (Throwable e) {
+                        throw new RuntimeException(e)
+                    }
+                }
+    }
+}
+
+task createIndexMd(type: Copy) {
+    from file("$projectDir/README.md")
+    into "$buildDir/pages"
+    rename 'README.md', 'index.md'
+}
+
+task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    classifier = 'javadoc'
+    from dokkaJavadoc.outputDirectory
+    from file("$projectDir/LICENSE")
+    from file("$projectDir/README.md")
+    from file("$projectDir/CHANGELOG.md")
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    from file("$projectDir/build.gradle")
+    from file("$projectDir/gradle.properties")
+    from file("$projectDir/settings.gradle")
+    from file("$projectDir/LICENSE")
+    from file("$projectDir/README.md")
+    from file("$projectDir/CHANGELOG.md")
+    classifier = 'sources'
+}
+
+jar {
+    from file("$projectDir/LICENSE")
+    from file("$projectDir/README.md")
+    from file("$projectDir/CHANGELOG.md")
+}
+
+if (!project.hasProperty('binariesOnly')) {
+    artifacts {
+        archives sourcesJar
+    }
+
+    // dokka will fail to build the javadoc jar on newest java versions
+    // https://github.com/Kotlin/dokka/issues/294
+    if (JavaVersion.current().majorVersion == "8") {
+        artifacts {
+            archives javadocJar
+        }
+
+        if (ext.has('org.ajoberstar.grgit.auth.username')) {
+            System.setProperty('org.ajoberstar.grgit.auth.username', ext['org.ajoberstar.grgit.auth.username'].toString())
+            System.setProperty('org.ajoberstar.grgit.auth.password', ext['org.ajoberstar.grgit.auth.password'].toString())
+        }
+
+        gitPublish {
+            // where to publish to (repo must exist)
+            repoUri = 'https://github.com/GameModsBR/Level-Manipulator-Interface.git'
+
+            // where to fetch from prior to fetching from the remote (i.e. a local repo to save time)
+            //referenceRepoUri = file("$projectDir/gh-pages").toURI().toString()
+
+            // branch will be created if it doesn't exist
+            branch = 'gh-pages'
+
+            // generally, you don't need to touch this
+            repoDir = file("$buildDir/gh-pages-repo") // defaults to $buildDir/gitPublish
+
+            // what to publish, this is a standard CopySpec
+            contents {
+                from("$buildDir/javadoc") {
+                    into 'javadoc'
+                }
+                from("$buildDir/kdoc") {
+                    into 'kdoc'
+                }
+                from "$buildDir/pages"
+                from 'src/pages'
+                from 'README.md'
+                from 'CHANGELOG.md'
+            }
+
+            // what to keep in the existing branch (include=keep)
+            preserve {
+                include '1.0.0/**'
+                exclude '1.0.0/temp.txt'
+            }
+
+            // message used when committing changes
+            commitMessage = 'Github Pages update' // defaults to 'Generated by gradle-git-publish'
+        }
+    }
+}
+
+gitPublishCopy.dependsOn dokkaJavadoc
+gitPublishCopy.dependsOn createReadmeFiles
+gitPublishCopy.dependsOn createIndexMd

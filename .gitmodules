@@ -1,0 +1,4 @@
+[submodule "gh-pages"]
+	path = gh-pages
+	url = https://github.com/GameModsBR/Level-Manipulator-Interface.git
+	branch = gh-pages
