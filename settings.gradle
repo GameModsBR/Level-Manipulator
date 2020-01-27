@@ -1,2 +1,3 @@
-rootProject.name = 'level-manipulator-interface'
+rootProject.name = 'level-manipulator'
 
+include ':interface', ':mc-regions', ':anvil', ':leveldb'

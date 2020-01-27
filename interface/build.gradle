@@ -1,0 +1,3 @@
+dependencies {
+    implementation "br.com.gamemods:nbt-manipulator:2.0.0"
+}

@@ -1,0 +1,4 @@
+dependencies {
+    implementation project(':interface')
+    implementation "br.com.gamemods:region-manipulator:2.0.0"
+}
