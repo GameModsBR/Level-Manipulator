@@ -1,4 +1,5 @@
 plugins {
+    id 'com.github.johnrengelman.shadow'
     id 'org.jetbrains.kotlin.jvm'
     id 'maven'
 }
@@ -12,3 +13,16 @@ dependencies {
     implementation "br.com.gamemods:region-manipulator:${project.region_manipulator_version}"
     implementation "org.iq80.leveldb:leveldb:${project.leveldb_version}"
 }
+
+shadowJar {
+    archiveClassifier.set('app')
+    manifest {
+        attributes 'Main-Class': 'br.com.gamemods.levelmanipulator.app.LevelManipulatorApp'
+    }
+    from file("$projectDir/README.md")
+    from file("$projectDir/CHANGELOG.md")
+    from file("$projectDir/REPLACEMENTS.md")
+    from file("$projectDir/MISSING_FEATURES.md")
+}
+
+build.finalizedBy shadowJar

@@ -6,4 +6,4 @@ include ':save-format'
 include ':catalog:catalog-interface', ':catalog:java-edition', ':catalog:bedrock-edition'
 include ':save-format:interface', ':save-format:mc-regions', ':save-format:anvil', ':save-format:leveldb'
 
-include ':cli'
+include ':app'
