@@ -1,3 +1,4 @@
 rootProject.name = 'level-manipulator'
 
+include ':java-edition', ':bedrock-edition'
 include ':interface', ':mc-regions', ':anvil', ':leveldb'
