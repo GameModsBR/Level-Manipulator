@@ -1,4 +1,9 @@
 rootProject.name = 'level-manipulator'
 
-include ':java-edition', ':bedrock-edition'
-include ':interface', ':mc-regions', ':anvil', ':leveldb'
+include ':catalog:'
+include ':save-format'
+
+include ':catalog:catalog-interface', ':catalog:java-edition', ':catalog:bedrock-edition'
+include ':save-format:interface', ':save-format:mc-regions', ':save-format:anvil', ':save-format:leveldb'
+
+include ':cli'

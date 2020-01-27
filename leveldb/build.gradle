@@ -1,4 +1,0 @@
-dependencies {
-    implementation project(':interface')
-    implementation 'org.iq80.leveldb:leveldb:0.12'
-}

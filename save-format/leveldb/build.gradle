@@ -1,0 +1,4 @@
+dependencies {
+    api project(':save-format:interface')
+    implementation "org.iq80.leveldb:leveldb:${project.leveldb_version}"
+}

@@ -1,0 +1,14 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm'
+    id 'maven'
+}
+
+dependencies {
+    implementation project(':save-format:anvil')
+    implementation project(':save-format:leveldb')
+    implementation project(':save-format:mc-regions')
+
+    implementation "br.com.gamemods:nbt-manipulator:${project.nbt_manipulator_version}"
+    implementation "br.com.gamemods:region-manipulator:${project.region_manipulator_version}"
+    implementation "org.iq80.leveldb:leveldb:${project.leveldb_version}"
+}

@@ -1,0 +1,4 @@
+dependencies {
+    api project(':save-format:interface')
+    implementation "br.com.gamemods:region-manipulator:${project.region_manipulator_version}"
+}

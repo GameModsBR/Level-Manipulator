@@ -1,0 +1,3 @@
+dependencies {
+    api "br.com.gamemods:nbt-manipulator:${project.nbt_manipulator_version}"
+}
