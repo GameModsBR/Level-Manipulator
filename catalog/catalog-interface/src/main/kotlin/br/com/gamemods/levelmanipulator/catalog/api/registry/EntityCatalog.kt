@@ -16,11 +16,7 @@ open class EntityCatalog<
     operator fun get(id: EntityIdType) = registry[id]
 
     @JvmName("getReifed")
-    inline operator fun <reified Id: EntityIdType> get(id: String) = get(
-        Identification<Id>(
-            id
-        )
-    )
+    inline operator fun <reified Id: EntityIdType> get(id: String) = get(Identification<Id>(id))
 
     operator fun contains(id: EntityIdType) = id in registry
 

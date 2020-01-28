@@ -1,9 +1,9 @@
 package br.com.gamemods.levelmanipulator.catalog.universal
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentification
-import br.com.gamemods.levelmanipulator.catalog.api.data.TileEntity
+import br.com.gamemods.levelmanipulator.catalog.api.data.TileEntityType
 
-class UniversalTileEntity(override val id: NamespacedIdentification) : TileEntity<NamespacedIdentification>() {
+class UniversalTileEntityType(override val id: NamespacedIdentification) : TileEntityType<NamespacedIdentification>() {
     override val universal get() = this
 
     override fun toString(): String {
