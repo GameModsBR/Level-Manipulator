@@ -2,7 +2,7 @@ package br.com.gamemods.levelmanipulator.catalog.java.legacy
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.NumericalIdentification
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalBlockState
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalBlockState
 
 class LegacyJavaEditionBlockState(
     override val id: NumericalIdentification,

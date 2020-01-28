@@ -48,7 +48,7 @@ subprojects {
             archivesBaseName = fn
 
             sourceSets.main.java.srcDirs = []
-            sourceSets.test.java.srcDirs = []
+            //sourceSets.test.java.srcDirs = []
 
             dependencies {
                 implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"

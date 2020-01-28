@@ -1,6 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.data
 
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalBlockState
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalBlockState
 
 abstract class BlockState<IdType: Identification, StateType: Identification> {
     abstract val id: IdType

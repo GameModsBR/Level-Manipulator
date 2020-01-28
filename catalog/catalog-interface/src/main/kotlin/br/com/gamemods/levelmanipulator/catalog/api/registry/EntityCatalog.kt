@@ -2,26 +2,28 @@ package br.com.gamemods.levelmanipulator.catalog.api.registry
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.EntityType
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
-import kotlin.reflect.KClass
+import java.util.*
 
-@Suppress("ConvertSecondaryConstructorToPrimary")
-open class EntityCatalog<
+abstract class EntityCatalog<
         EntityIdType: Identification,
         EntityTypeClass: EntityType<EntityIdType>
 > {
-    constructor(@Suppress("UNUSED_PARAMETER") stateClass: KClass<EntityTypeClass>)
+    private val registry: SortedMap<EntityIdType, EntityTypeClass> = sortedMapOf()
 
-    private val registry = mutableMapOf<EntityIdType, EntityTypeClass>()
+    operator fun get(id: EntityIdType): EntityTypeClass? = registry[id]
+    operator fun get(reference: EntityType<EntityIdType>) = get(reference.id)
 
-    operator fun get(id: EntityIdType) = registry[id]
-
-    @JvmName("getReifed")
-    inline operator fun <reified Id: EntityIdType> get(id: String) = get(Identification<Id>(id))
+    abstract operator fun get(id: String): EntityTypeClass?
 
     operator fun contains(id: EntityIdType) = id in registry
+    operator fun contains(reference: EntityType<EntityIdType>) = contains(reference.id)
 
     @JvmName("register")
     operator fun plusAssign(entityType: EntityTypeClass) {
+        val current = this[entityType]
+        require(current == null) {
+            "The entity type $entityType is already registered as $current"
+        }
         registry[entityType.id] = entityType
     }
 

@@ -1,6 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.data
 
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalItem
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
 abstract class Item<IdType: Identification, MetaType: Identification, BlockType: BlockState<*, *>> {
     abstract val id: IdType

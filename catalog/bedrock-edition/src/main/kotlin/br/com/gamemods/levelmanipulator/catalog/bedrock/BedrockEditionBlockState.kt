@@ -3,7 +3,7 @@ package br.com.gamemods.levelmanipulator.catalog.bedrock
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentification
 import br.com.gamemods.levelmanipulator.catalog.api.data.SingleLayerCompoundIdentification
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalBlockState
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalBlockState
 
 class BedrockEditionBlockState(
     override val id: NamespacedIdentification,

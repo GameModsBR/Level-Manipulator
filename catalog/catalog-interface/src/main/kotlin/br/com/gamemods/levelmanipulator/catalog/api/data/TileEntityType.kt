@@ -1,6 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.data
 
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalTileEntityType
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalTileEntityType
 
 abstract class TileEntityType<IdType: Identification> {
     abstract val id: IdType

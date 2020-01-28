@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog.universal
+package br.com.gamemods.levelmanipulator.catalog.universal.data
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.EntityType
 import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentification

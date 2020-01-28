@@ -2,40 +2,33 @@ package br.com.gamemods.levelmanipulator.catalog.api.registry
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
-import kotlin.reflect.KClass
+import java.util.*
 
-@Suppress("ConvertSecondaryConstructorToPrimary")
-open class BlockStateCatalog<BlockIdType: Identification, BlockDataType: Identification, StateType: BlockState<BlockIdType, BlockDataType>> {
-    constructor(@Suppress("UNUSED_PARAMETER") stateClass: KClass<StateType>)
+abstract class BlockStateCatalog<BlockIdType: Identification, BlockDataType: Identification, StateType: BlockState<BlockIdType, BlockDataType>> {
+    private val registry: SortedMap<BlockIdType, SortedMap<BlockDataType, StateType>> = sortedMapOf()
 
-    private val registry = mutableMapOf<BlockIdType, MutableMap<BlockDataType, StateType>>()
-
-    operator fun get(id: BlockIdType) = registry[id]?.values?.toList() ?: emptyList()
-    operator fun get(id: BlockIdType, data: BlockDataType) = registry[id]?.get(data)
+    operator fun get(id: BlockIdType): List<StateType> = registry[id]?.values?.toList() ?: emptyList()
+    operator fun get(id: BlockIdType, data: BlockDataType): StateType? = registry[id]?.get(data)
+    operator fun get(reference: BlockState<BlockIdType, BlockDataType>) = get(reference.id, reference.state)
 
 
-    @JvmName("getReifed")
-    inline operator fun <reified Id: BlockIdType> get(id: String) = get(
-        Identification<Id>(
-            id
-        )
-    )
-    @JvmName("getReifed")
-    inline operator fun <reified Id: BlockIdType, reified Data: BlockDataType> get(id: String, data: String)
-            = get(
-        Identification<Id>(id),
-        Identification<Data>(data)
-    )
-
+    abstract operator fun get(id: String): List<StateType>
+    abstract operator fun get(id: String, data: String): StateType?
+    
     @Suppress("NOTHING_TO_INLINE")
     @JvmSynthetic
     inline operator fun contains(pair: Pair<BlockIdType, BlockDataType>) = contains(pair.first, pair.second)
+    operator fun contains(reference: BlockState<BlockIdType, BlockDataType>) = contains(reference.id, reference.state)
     fun contains(id: BlockIdType, data: BlockDataType) = registry[id]?.containsKey(data) ?: false
     operator fun contains(id: BlockIdType) = id in registry
 
     @JvmName("register")
     operator fun plusAssign(block: StateType) {
-        registry.getOrPut(block.id, ::mutableMapOf)[block.state] = block
+        val current = this[block]
+        require(current == null) {
+            "The block state $block is already registered as $current"
+        }
+        registry.getOrPut(block.id, { sortedMapOf() })[block.state] = block
     }
 
     @JvmName("unregister")

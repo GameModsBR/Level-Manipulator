@@ -2,26 +2,28 @@ package br.com.gamemods.levelmanipulator.catalog.api.registry
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 import br.com.gamemods.levelmanipulator.catalog.api.data.TileEntityType
-import kotlin.reflect.KClass
+import java.util.*
 
-@Suppress("ConvertSecondaryConstructorToPrimary")
-open class TileEntityCatalog<
+abstract class TileEntityCatalog<
         TileEntityIdType: Identification,
         TileEntityClass: TileEntityType<TileEntityIdType>
 > {
-    constructor(@Suppress("UNUSED_PARAMETER") stateClass: KClass<TileEntityClass>)
+    private val registry: SortedMap<TileEntityIdType, TileEntityClass> = sortedMapOf()
 
-    private val registry = mutableMapOf<TileEntityIdType, TileEntityClass>()
+    operator fun get(id: TileEntityIdType): TileEntityClass? = registry[id]
+    operator fun get(reference: TileEntityType<TileEntityIdType>) = get(reference.id)
 
-    operator fun get(id: TileEntityIdType) = registry[id]
-
-    @JvmName("getReifed")
-    inline operator fun <reified Id: TileEntityIdType> get(id: String) = get(Identification<Id>( id ))
+    abstract operator fun get(id: String): TileEntityClass?
 
     operator fun contains(id: TileEntityIdType) = id in registry
+    operator fun contains(reference: TileEntityType<TileEntityIdType>) = contains(reference.id)
 
     @JvmName("register")
     operator fun plusAssign(tileEntity: TileEntityClass) {
+        val current = this[tileEntity]
+        require(current == null) {
+            "The tile entity type $tileEntity is already registered as $current"
+        }
         registry[tileEntity.id] = tileEntity
     }
 

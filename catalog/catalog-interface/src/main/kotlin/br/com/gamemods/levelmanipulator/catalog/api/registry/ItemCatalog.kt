@@ -3,46 +3,38 @@ package br.com.gamemods.levelmanipulator.catalog.api.registry
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 import br.com.gamemods.levelmanipulator.catalog.api.data.Item
-import kotlin.reflect.KClass
+import java.util.*
 
-@Suppress("ConvertSecondaryConstructorToPrimary")
-open class ItemCatalog<
+abstract class ItemCatalog<
         ItemIdType: Identification,
         ItemDataType: Identification,
         BlockStateType: BlockState<*, *>,
         ItemType: Item<ItemIdType, ItemDataType, BlockStateType>
 > {
-    constructor(@Suppress("UNUSED_PARAMETER") stateClass: KClass<ItemType>)
+    private val registry: SortedMap<ItemIdType, SortedMap<ItemDataType?, ItemType>> = sortedMapOf()
 
-    private val registry = mutableMapOf<ItemIdType, MutableMap<ItemDataType?, ItemType>>()
+    operator fun get(id: ItemIdType): List<ItemType> = registry[id]?.values?.toList() ?: emptyList()
+    operator fun get(id: ItemIdType, data: ItemDataType?): ItemType? = registry[id]?.get(data)
+    operator fun get(reference: Item<ItemIdType, ItemDataType, *>) = get(reference.id, reference.meta)
 
-    operator fun get(id: ItemIdType) = registry[id]?.values?.toList() ?: emptyList()
-    operator fun get(id: ItemIdType, data: ItemDataType?) = registry[id]?.get(data)
 
-
-    @JvmName("getReifed")
-    inline operator fun <reified Id: ItemIdType> get(id: String) = get(
-        Identification<Id>(
-            id
-        )
-    )
-    @JvmName("getReifed")
-    inline operator fun <reified Id: ItemIdType, reified Data: ItemDataType> get(id: String, data: String?)
-            = get(Identification<Id>(id), data?.let {
-        Identification<Data>(
-            it
-        )
-    })
+    abstract operator fun get(id: String): List<ItemType>
+    abstract operator fun get(id: String, data: String?): ItemType?
 
     @Suppress("NOTHING_TO_INLINE")
     @JvmSynthetic
     inline operator fun contains(pair: Pair<ItemIdType, ItemDataType>) = contains(pair.first, pair.second)
-    fun contains(id: ItemIdType, data: ItemDataType) = registry[id]?.containsKey(data) ?: false
+    fun contains(id: ItemIdType, data: ItemDataType?) = registry[id]?.containsKey(data) ?: false
     operator fun contains(id: ItemIdType) = id in registry
+    operator fun contains(reference: Item<ItemIdType, ItemDataType, *>) = contains(reference.id, reference.meta)
 
     @JvmName("register")
     operator fun plusAssign(item: ItemType) {
-        registry.getOrPut(item.id, ::mutableMapOf)[item.meta] = item
+        val current = this[item]
+        require(current == null) {
+            "The item type $item is already registered as $current"
+        }
+        registry.getOrPut(item.id, { TreeMap(nullsFirst()) })[item.meta] = item
     }
 
     @JvmName("unregister")

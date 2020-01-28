@@ -3,7 +3,7 @@ package br.com.gamemods.levelmanipulator.catalog.java
 import br.com.gamemods.levelmanipulator.catalog.api.data.Item
 import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentification
 import br.com.gamemods.levelmanipulator.catalog.api.data.NumericalIdentification
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalItem
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
 class JavaEditionItem(
     override val id: NamespacedIdentification,

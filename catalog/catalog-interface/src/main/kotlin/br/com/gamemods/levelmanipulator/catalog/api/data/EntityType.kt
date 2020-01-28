@@ -1,6 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.data
 
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalEntityType
+import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalEntityType
 
 abstract class EntityType<IdType: Identification> {
     abstract val id: IdType
