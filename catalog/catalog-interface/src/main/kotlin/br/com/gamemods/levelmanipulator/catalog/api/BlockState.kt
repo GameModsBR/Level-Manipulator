@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog
+package br.com.gamemods.levelmanipulator.catalog.api
 
 abstract class BlockState<IdType: Identification, StateType: Identification> {
     abstract val id: IdType

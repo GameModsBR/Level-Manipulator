@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog
+package br.com.gamemods.levelmanipulator.catalog.api
 
 abstract class Catalog {
     abstract val blockStates: BlockStateCatalog<*, *, *>

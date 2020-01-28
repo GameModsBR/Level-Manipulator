@@ -2,7 +2,7 @@ package br.com.gamemods.levelmanipulator
 
 import br.com.gamemods.levelmanipulator.base.BlockPos
 import br.com.gamemods.levelmanipulator.base.TileEntity
-import br.com.gamemods.levelmanipulator.catalog.StringIdentification
+import br.com.gamemods.levelmanipulator.catalog.api.StringIdentification
 import br.com.gamemods.nbtmanipulator.NbtCompound
 
 

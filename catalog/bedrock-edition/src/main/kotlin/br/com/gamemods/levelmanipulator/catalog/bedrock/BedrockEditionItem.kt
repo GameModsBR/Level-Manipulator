@@ -1,4 +1,7 @@
-package br.com.gamemods.levelmanipulator.catalog
+package br.com.gamemods.levelmanipulator.catalog.bedrock
+
+import br.com.gamemods.levelmanipulator.catalog.api.Item
+import br.com.gamemods.levelmanipulator.catalog.api.NumericalIdentification
 
 class BedrockEditionItem(
     override val id: NumericalIdentification,

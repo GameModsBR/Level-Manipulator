@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog
+package br.com.gamemods.levelmanipulator.catalog.api
 
 import br.com.gamemods.nbtmanipulator.*
 
@@ -19,11 +19,21 @@ sealed class Identification {
         @JvmName("from")
         inline operator fun <reified Id: Identification> invoke(str: String): Id {
             return when(Id::class) {
-                NumericalIdentification::class -> NumericalIdentification(str.toInt())
-                NamespacedIdentification::class -> NamespacedIdentification(str)
-                StringIdentification::class -> StringIdentification(str)
-                SingleLayerCompoundIdentification::class -> SingleLayerCompoundIdentification(str)
-                StringKeyValueIdentification::class -> StringKeyValueIdentification(str)
+                NumericalIdentification::class -> NumericalIdentification(
+                    str.toInt()
+                )
+                NamespacedIdentification::class -> NamespacedIdentification(
+                    str
+                )
+                StringIdentification::class -> StringIdentification(
+                    str
+                )
+                SingleLayerCompoundIdentification::class -> SingleLayerCompoundIdentification(
+                    str
+                )
+                StringKeyValueIdentification::class -> StringKeyValueIdentification(
+                    str
+                )
                 else -> throw IllegalArgumentException("Unsupported identification type: ${Id::class.java.name}")
             } as Id
         }

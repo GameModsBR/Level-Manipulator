@@ -2,8 +2,8 @@ package br.com.gamemods.levelmanipulator
 
 import br.com.gamemods.levelmanipulator.base.Block
 import br.com.gamemods.levelmanipulator.base.BlockPos
-import br.com.gamemods.levelmanipulator.catalog.BlockState
-import br.com.gamemods.levelmanipulator.catalog.NumericalIdentification
+import br.com.gamemods.levelmanipulator.catalog.api.BlockState
+import br.com.gamemods.levelmanipulator.catalog.api.NumericalIdentification
 
 class McRegionBlock(
     override val chunkSection: McRegionChunkSection,

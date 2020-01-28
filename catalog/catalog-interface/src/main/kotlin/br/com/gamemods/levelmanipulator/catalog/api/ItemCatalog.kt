@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog
+package br.com.gamemods.levelmanipulator.catalog.api
 
 import kotlin.reflect.KClass
 
@@ -18,10 +18,18 @@ open class ItemCatalog<
 
 
     @JvmName("getReifed")
-    inline operator fun <reified Id: ItemIdType> get(id: String) = get(Identification<Id>(id))
+    inline operator fun <reified Id: ItemIdType> get(id: String) = get(
+        Identification<Id>(
+            id
+        )
+    )
     @JvmName("getReifed")
     inline operator fun <reified Id: ItemIdType, reified Data: ItemDataType> get(id: String, data: String?)
-            = get(Identification<Id>(id), data?.let { Identification<Data>(it) })
+            = get(Identification<Id>(id), data?.let {
+        Identification<Data>(
+            it
+        )
+    })
 
     @Suppress("NOTHING_TO_INLINE")
     @JvmSynthetic
