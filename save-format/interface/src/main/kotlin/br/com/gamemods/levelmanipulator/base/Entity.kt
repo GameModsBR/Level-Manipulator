@@ -1,7 +1,7 @@
 package br.com.gamemods.levelmanipulator.base
 
-import br.com.gamemods.levelmanipulator.catalog.api.EntityType
-import br.com.gamemods.levelmanipulator.catalog.api.Identification
+import br.com.gamemods.levelmanipulator.catalog.api.data.EntityType
+import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 
 abstract class Entity<IdType: Identification>(
     open val chunkSection: ChunkSection,

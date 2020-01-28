@@ -1,5 +1,8 @@
-package br.com.gamemods.levelmanipulator.catalog.api
+package br.com.gamemods.levelmanipulator.catalog.api.registry
 
+import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
+import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
+import br.com.gamemods.levelmanipulator.catalog.api.data.Item
 import kotlin.reflect.KClass
 
 @Suppress("ConvertSecondaryConstructorToPrimary")

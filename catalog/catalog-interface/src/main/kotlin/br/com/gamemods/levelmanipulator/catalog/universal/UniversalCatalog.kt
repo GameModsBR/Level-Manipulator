@@ -1,15 +1,15 @@
-package br.com.gamemods.levelmanipulator.catalog.java
+package br.com.gamemods.levelmanipulator.catalog.universal
 
 import br.com.gamemods.levelmanipulator.catalog.api.Catalog
 import br.com.gamemods.levelmanipulator.catalog.api.registry.BlockStateCatalog
 import br.com.gamemods.levelmanipulator.catalog.api.registry.EntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.api.registry.ItemCatalog
 
-class JavaEditionCatalog: Catalog() {
+object UniversalCatalog: Catalog() {
     override val blockStates =
-        BlockStateCatalog(JavaEditionBlockState::class)
+        BlockStateCatalog(UniversalBlockState::class)
     override val items =
-        ItemCatalog(JavaEditionItem::class)
+        ItemCatalog(UniversalItem::class)
     override val entityTypes =
-        EntityCatalog(JavaEditionEntityType::class)
+        EntityCatalog(UniversalEntityType::class)
 }

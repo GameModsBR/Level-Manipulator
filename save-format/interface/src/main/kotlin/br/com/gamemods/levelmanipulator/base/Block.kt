@@ -1,7 +1,7 @@
 package br.com.gamemods.levelmanipulator.base
 
-import br.com.gamemods.levelmanipulator.catalog.api.BlockState
-import br.com.gamemods.levelmanipulator.catalog.api.Identification
+import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
+import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 
 open class Block<IdType: Identification, DataType: Identification>(
     open val chunkSection: ChunkSection,

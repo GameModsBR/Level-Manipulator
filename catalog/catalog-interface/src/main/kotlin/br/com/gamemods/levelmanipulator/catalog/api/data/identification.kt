@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog.api
+package br.com.gamemods.levelmanipulator.catalog.api.data
 
 import br.com.gamemods.nbtmanipulator.*
 

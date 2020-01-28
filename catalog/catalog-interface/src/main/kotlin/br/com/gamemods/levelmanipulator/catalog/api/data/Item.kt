@@ -1,16 +1,20 @@
-package br.com.gamemods.levelmanipulator.catalog.api
+package br.com.gamemods.levelmanipulator.catalog.api.data
+
+import br.com.gamemods.levelmanipulator.catalog.universal.UniversalItem
 
 abstract class Item<IdType: Identification, MetaType: Identification, BlockType: BlockState<*, *>> {
     abstract val id: IdType
     abstract val meta: MetaType?
     abstract val block: BlockType?
+    abstract val universal: UniversalItem
 
     fun component1() = id
     fun component2() = meta
     fun component3() = block
+    fun component4() = universal
 
     override fun toString(): String {
-        return "Item(id=$id, meta=$meta, block=$block)"
+        return "Item(id=$id, meta=$meta, block=$block, universal=$universal)"
     }
 
     override fun equals(other: Any?): Boolean {

@@ -1,19 +1,21 @@
-package br.com.gamemods.levelmanipulator.catalog.api
+package br.com.gamemods.levelmanipulator.catalog.api.data
 
-abstract class EntityType<IdType: Identification> {
+import br.com.gamemods.levelmanipulator.catalog.universal.UniversalTileEntity
+
+abstract class TileEntity<IdType: Identification> {
     abstract val id: IdType
+    abstract val universal: UniversalTileEntity
 
     fun component1() = id
-
     override fun toString(): String {
-        return "EntityType(id=$id)"
+        return "TileEntity(id=$id, universal=$universal)"
     }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as EntityType<*>
+        other as TileEntity<*>
 
         if (id != other.id) return false
 
@@ -23,6 +25,5 @@ abstract class EntityType<IdType: Identification> {
     override fun hashCode(): Int {
         return id.hashCode()
     }
-
 
 }

@@ -1,14 +1,18 @@
-package br.com.gamemods.levelmanipulator.catalog.api
+package br.com.gamemods.levelmanipulator.catalog.api.data
+
+import br.com.gamemods.levelmanipulator.catalog.universal.UniversalBlockState
 
 abstract class BlockState<IdType: Identification, StateType: Identification> {
     abstract val id: IdType
     abstract val state: StateType
+    abstract val universal: UniversalBlockState
 
     fun component1() = id
     fun component2() = state
+    fun component3() = universal
 
     override fun toString(): String {
-        return "BlockState(id=$id, state=$state)"
+        return "BlockState(id=$id, state=$state, universal=$universal)"
     }
 
     override fun equals(other: Any?): Boolean {

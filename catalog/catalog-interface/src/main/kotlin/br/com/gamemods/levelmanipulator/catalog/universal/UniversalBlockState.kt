@@ -1,13 +1,16 @@
-package br.com.gamemods.levelmanipulator.catalog.java
+package br.com.gamemods.levelmanipulator.catalog.universal
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentification
 import br.com.gamemods.levelmanipulator.catalog.api.data.StringKeyValueIdentification
-import br.com.gamemods.levelmanipulator.catalog.universal.UniversalBlockState
 
-class JavaEditionBlockState(
+class UniversalBlockState(
     override val id: NamespacedIdentification,
     override val state: StringKeyValueIdentification
 ): BlockState<NamespacedIdentification, StringKeyValueIdentification>() {
-    override lateinit var universal: UniversalBlockState
+    override val universal get() = this
+
+    override fun toString(): String {
+        return "UniversalBlockState(id=$id, state=$state)"
+    }
 }
