@@ -1,13 +1,13 @@
-package br.com.gamemods.levelmanipulator.catalog.bedrock
+package br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.data
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.Item
 import br.com.gamemods.levelmanipulator.catalog.api.data.NumericalIdentification
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
-class BedrockEditionItem(
+class LegacyBedrockEditionItem internal constructor(
     override val id: NumericalIdentification,
     override val meta: NumericalIdentification?,
-    override val block: BedrockEditionBlockState?
-) : Item<NumericalIdentification, NumericalIdentification, BedrockEditionBlockState>() {
+    override val block: LegacyBedrockEditionBlockState?
+): Item<NumericalIdentification, NumericalIdentification, LegacyBedrockEditionBlockState>() {
     override lateinit var universal: UniversalItem
 }

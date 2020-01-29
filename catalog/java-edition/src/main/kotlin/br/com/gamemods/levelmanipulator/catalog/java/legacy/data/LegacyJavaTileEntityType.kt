@@ -1,9 +1,9 @@
-package br.com.gamemods.levelmanipulator.catalog.bedrock
+package br.com.gamemods.levelmanipulator.catalog.java.legacy.data
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.StringIdentification
 import br.com.gamemods.levelmanipulator.catalog.api.data.TileEntityType
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalTileEntityType
 
-class BedrockEditionEntityTileEntityType(override val id: StringIdentification) : TileEntityType<StringIdentification>() {
+class LegacyJavaTileEntityType(override val id: StringIdentification) : TileEntityType<StringIdentification>() {
     override lateinit var universal: UniversalTileEntityType
 }

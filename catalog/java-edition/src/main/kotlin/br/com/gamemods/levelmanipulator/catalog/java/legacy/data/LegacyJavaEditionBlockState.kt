@@ -1,4 +1,4 @@
-package br.com.gamemods.levelmanipulator.catalog.java.legacy
+package br.com.gamemods.levelmanipulator.catalog.java.legacy.data
 
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.NumericalIdentification

@@ -47,6 +47,8 @@ sealed class Identification: Comparable<Identification> {
  * Simple int id.
  */
 data class NumericalIdentification(val id: Int): Identification() {
+    constructor(id: String): this(id.toIntOrNull() ?: throw IllegalArgumentException("Invalid numerical identification: $id"))
+
     override fun toString(): String {
         return id.toString()
     }

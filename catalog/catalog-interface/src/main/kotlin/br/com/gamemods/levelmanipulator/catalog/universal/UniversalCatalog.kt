@@ -21,7 +21,7 @@ object UniversalCatalog: Catalog() {
     private fun registerSimpleBlocks() {
         resourceReader("/levelmanipulator/catalog/universal/simple-blocks.txt") { reader ->
             reader.lineSequence().forEach { line ->
-                val name = line.trim().takeIf { it.isNotBlank() } ?: return@forEach
+                val name = "universal-" + (line.trim().takeIf { it.isNotBlank() } ?: return@forEach)
                 val blockState = UniversalBlockState(name)
                 blockStates += blockState
                 items += UniversalItem(name, block = blockState)
