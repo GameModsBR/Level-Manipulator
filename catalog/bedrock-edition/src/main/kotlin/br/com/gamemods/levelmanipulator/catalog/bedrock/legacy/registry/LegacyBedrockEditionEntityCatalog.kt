@@ -5,8 +5,10 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.EntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.LegacyBedrockEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.data.LegacyBedrockEditionEntityType
 
-class LegacyBedrockEditionEntityCatalog internal constructor(
-    override val catalog: LegacyBedrockEditionCatalog
-): EntityCatalog<StringIdentification, LegacyBedrockEditionEntityType>(){
+object LegacyBedrockEditionEntityCatalog: EntityCatalog<
+        StringIdentification, 
+        LegacyBedrockEditionEntityType
+>(){
+    override val catalog get() = LegacyBedrockEditionCatalog
     override fun get(id: String) = get(StringIdentification(id))
 }

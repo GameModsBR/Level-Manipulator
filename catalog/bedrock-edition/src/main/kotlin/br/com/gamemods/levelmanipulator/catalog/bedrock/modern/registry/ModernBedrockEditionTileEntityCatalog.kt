@@ -5,8 +5,10 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.TileEntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.ModernBedrockEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.data.ModernBedrockEditionEntityTileEntityType
 
-class ModernBedrockEditionTileEntityCatalog internal constructor(
-    override val catalog: ModernBedrockEditionCatalog
-): TileEntityCatalog<StringIdentification, ModernBedrockEditionEntityTileEntityType>() {
+object ModernBedrockEditionTileEntityCatalog: TileEntityCatalog<
+        StringIdentification,
+        ModernBedrockEditionEntityTileEntityType
+>() {
+    override val catalog get() = ModernBedrockEditionCatalog
     override fun get(id: String) = get(StringIdentification(id))
 }

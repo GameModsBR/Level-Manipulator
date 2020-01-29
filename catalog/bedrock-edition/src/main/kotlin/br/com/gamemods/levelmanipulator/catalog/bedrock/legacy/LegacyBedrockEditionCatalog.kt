@@ -6,9 +6,9 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.registry.LegacyBe
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.registry.LegacyBedrockEditionItemCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.registry.LegacyBedrockEditionTileEntityCatalog
 
-class LegacyBedrockEditionCatalog: Catalog("legacy-bedrock") {
-    override val blockStates = LegacyBedrockEditionBlockStateCatalog(this)
-    override val items = LegacyBedrockEditionItemCatalog(this)
-    override val entityTypes = LegacyBedrockEditionEntityCatalog(this)
-    override val tileEntities = LegacyBedrockEditionTileEntityCatalog(this)
+object LegacyBedrockEditionCatalog: Catalog("legacy-bedrock") {
+    override val blockStates get() = LegacyBedrockEditionBlockStateCatalog
+    override val items get() = LegacyBedrockEditionItemCatalog
+    override val entityTypes get() = LegacyBedrockEditionEntityCatalog
+    override val tileEntities get() = LegacyBedrockEditionTileEntityCatalog
 }

@@ -6,9 +6,13 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.LegacyBedrockEdit
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.data.LegacyBedrockEditionBlockState
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.data.LegacyBedrockEditionItem
 
-class LegacyBedrockEditionItemCatalog internal constructor(
-    override val catalog: LegacyBedrockEditionCatalog
-): ItemCatalog<NumericalIdentification, NumericalIdentification, LegacyBedrockEditionBlockState, LegacyBedrockEditionItem>() {
+object LegacyBedrockEditionItemCatalog: ItemCatalog<
+        NumericalIdentification,
+        NumericalIdentification,
+        LegacyBedrockEditionBlockState,
+        LegacyBedrockEditionItem
+>() {
+    override val catalog get() = LegacyBedrockEditionCatalog
     override fun get(id: String) = get(NumericalIdentification(id))
     override fun get(id: String, data: String?) = get(NumericalIdentification(id), data?.let { NumericalIdentification(it) })
 }

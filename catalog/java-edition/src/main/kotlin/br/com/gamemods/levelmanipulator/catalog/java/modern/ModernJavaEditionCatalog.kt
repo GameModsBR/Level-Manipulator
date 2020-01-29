@@ -6,9 +6,9 @@ import br.com.gamemods.levelmanipulator.catalog.java.modern.registry.ModernJavaE
 import br.com.gamemods.levelmanipulator.catalog.java.modern.registry.ModernJavaEditionItemCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.modern.registry.ModernJavaEditionTileEntityCatalog
 
-class ModernJavaEditionCatalog: Catalog("modern-java") {
-    override val blockStates = ModernJavaEditionBlockStateCatalog(this)
-    override val items = ModernJavaEditionItemCatalog(this)
-    override val entityTypes = ModernJavaEditionEntityCatalog(this)
-    override val tileEntities = ModernJavaEditionTileEntityCatalog(this)
+object ModernJavaEditionCatalog: Catalog("modern-java") {
+    override val blockStates get() = ModernJavaEditionBlockStateCatalog
+    override val items get() = ModernJavaEditionItemCatalog
+    override val entityTypes get() = ModernJavaEditionEntityCatalog
+    override val tileEntities get() = ModernJavaEditionTileEntityCatalog
 }

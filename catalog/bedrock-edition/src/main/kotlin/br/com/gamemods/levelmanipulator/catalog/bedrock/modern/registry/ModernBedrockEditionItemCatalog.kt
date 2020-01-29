@@ -7,9 +7,13 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.ModernBedrockEdit
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.data.ModernBedrockEditionBlockState
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.data.ModernBedrockEditionItem
 
-class ModernBedrockEditionItemCatalog internal constructor(
-    override val catalog: ModernBedrockEditionCatalog
-): ItemCatalog<NamespacedIdentification, NumericalIdentification, ModernBedrockEditionBlockState, ModernBedrockEditionItem>() {
+object ModernBedrockEditionItemCatalog: ItemCatalog<
+        NamespacedIdentification,
+        NumericalIdentification,
+        ModernBedrockEditionBlockState,
+        ModernBedrockEditionItem
+>() {
+    override val catalog get() = ModernBedrockEditionCatalog
     override fun get(id: String) = get(NamespacedIdentification(id))
     override fun get(id: String, data: String?) = get(NamespacedIdentification(id), data?.let { NumericalIdentification(it) })
 }

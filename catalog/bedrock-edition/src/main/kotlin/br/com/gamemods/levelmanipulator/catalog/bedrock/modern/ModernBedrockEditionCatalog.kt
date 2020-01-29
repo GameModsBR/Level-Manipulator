@@ -6,9 +6,9 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.registry.ModernBe
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.registry.ModernBedrockEditionItemCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.registry.ModernBedrockEditionTileEntityCatalog
 
-class ModernBedrockEditionCatalog: Catalog("modern-bedrock") {
-    override val blockStates = ModernBedrockEditionBlockStateCatalog(this)
-    override val items = ModernBedrockEditionItemCatalog(this)
-    override val entityTypes = ModernBedrockEditionEntityCatalog(this)
-    override val tileEntities = ModernBedrockEditionTileEntityCatalog(this)
+object ModernBedrockEditionCatalog: Catalog("modern-bedrock") {
+    override val blockStates get() = ModernBedrockEditionBlockStateCatalog
+    override val items get() = ModernBedrockEditionItemCatalog
+    override val entityTypes get() = ModernBedrockEditionEntityCatalog
+    override val tileEntities get() = ModernBedrockEditionTileEntityCatalog
 }

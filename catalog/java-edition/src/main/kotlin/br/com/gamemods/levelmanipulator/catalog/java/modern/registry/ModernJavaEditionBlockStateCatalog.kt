@@ -6,9 +6,12 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.BlockStateCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.modern.ModernJavaEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.modern.data.ModernJavaEditionBlockState
 
-class ModernJavaEditionBlockStateCatalog internal constructor(
-    override val catalog: ModernJavaEditionCatalog
-): BlockStateCatalog<NamespacedIdentification, StringKeyValueIdentification, ModernJavaEditionBlockState>() {
+object ModernJavaEditionBlockStateCatalog: BlockStateCatalog<
+        NamespacedIdentification, 
+        StringKeyValueIdentification, 
+        ModernJavaEditionBlockState
+>() {
+    override val catalog get() = ModernJavaEditionCatalog
     override fun get(id: String) = get(NamespacedIdentification(id))
     override fun get(id: String, data: String) = get(NamespacedIdentification(id), StringKeyValueIdentification(data))
 }

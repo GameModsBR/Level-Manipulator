@@ -7,9 +7,13 @@ import br.com.gamemods.levelmanipulator.catalog.java.modern.ModernJavaEditionCat
 import br.com.gamemods.levelmanipulator.catalog.java.modern.data.ModernJavaEditionBlockState
 import br.com.gamemods.levelmanipulator.catalog.java.modern.data.ModernJavaEditionItem
 
-class ModernJavaEditionItemCatalog internal constructor(
-    override val catalog: ModernJavaEditionCatalog
-): ItemCatalog<NamespacedIdentification, NumericalIdentification, ModernJavaEditionBlockState, ModernJavaEditionItem>() {
+object ModernJavaEditionItemCatalog: ItemCatalog<
+        NamespacedIdentification,
+        NumericalIdentification, 
+        ModernJavaEditionBlockState,
+        ModernJavaEditionItem
+>() {
+    override val catalog get() = ModernJavaEditionCatalog
     override fun get(id: String) = get(NamespacedIdentification(id))
     override fun get(id: String, data: String?) = get(NamespacedIdentification(id), data?.let { NumericalIdentification(it) })
 }
