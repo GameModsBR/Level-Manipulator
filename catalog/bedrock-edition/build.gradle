@@ -1,3 +1,3 @@
 dependencies {
-    implementation project(':catalog:catalog-interface')
+    implementation project(':catalog:universal')
 }
