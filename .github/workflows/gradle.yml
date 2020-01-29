@@ -26,7 +26,7 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build -PbinariesOnly
     - name: Rename app artifact
-      run: mv app/build/libs/level-manipulator-app-*.jar app/build/libs/level-manipulator-app.jar
+      run: mv app/build/libs/level-manipulator-app-*-app.jar app/build/libs/level-manipulator-app.jar
     - name: Archive app artifact
       uses: actions/upload-artifact@v1
       if: success()
