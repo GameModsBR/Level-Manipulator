@@ -1,10 +1,16 @@
 package br.com.gamemods.levelmanipulator.catalog.api.registry
 
+import br.com.gamemods.levelmanipulator.catalog.api.Catalog
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 import java.util.*
 
-abstract class BlockStateCatalog<BlockIdType: Identification, BlockDataType: Identification, StateType: BlockState<BlockIdType, BlockDataType>> {
+abstract class BlockStateCatalog<
+        BlockIdType: Identification,
+        BlockDataType: Identification,
+        StateType: BlockState<BlockIdType, BlockDataType>
+> {
+    abstract val catalog: Catalog
     private val registry: SortedMap<BlockIdType, SortedMap<BlockDataType, StateType>> = sortedMapOf()
 
     operator fun get(id: BlockIdType): List<StateType> = registry[id]?.values?.toList() ?: emptyList()

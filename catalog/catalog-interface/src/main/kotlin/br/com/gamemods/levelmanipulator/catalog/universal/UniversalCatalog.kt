@@ -8,17 +8,22 @@ import br.com.gamemods.levelmanipulator.catalog.universal.registry.UniversalEnti
 import br.com.gamemods.levelmanipulator.catalog.universal.registry.UniversalItemCatalog
 import br.com.gamemods.levelmanipulator.catalog.universal.registry.UniversalTileEntityCatalog
 
-object UniversalCatalog: Catalog() {
+object UniversalCatalog: Catalog("universal") {
+    var loaded = false; private set
+
     override val blockStates get() = UniversalBlockStateCatalog
     override val items get() = UniversalItemCatalog
     override val entityTypes get() = UniversalEntityCatalog
     override val tileEntities get() = UniversalTileEntityCatalog
-    
-    init {
-        registerSimpleBlocks()
+
+    fun load() {
+        check(!loaded) {
+            "Already loaded."
+        }
+        loaded = true
     }
-    
-    private fun registerSimpleBlocks() {
+
+    private fun loadBlockStates() {
         resourceReader("/levelmanipulator/catalog/universal/simple-blocks.txt") { reader ->
             reader.lineSequence().forEach { line ->
                 val name = "universal-" + (line.trim().takeIf { it.isNotBlank() } ?: return@forEach)

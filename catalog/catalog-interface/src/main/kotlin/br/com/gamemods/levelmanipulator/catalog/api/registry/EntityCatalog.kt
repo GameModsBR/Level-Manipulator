@@ -1,5 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.registry
 
+import br.com.gamemods.levelmanipulator.catalog.api.Catalog
 import br.com.gamemods.levelmanipulator.catalog.api.data.EntityType
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 import java.util.*
@@ -8,6 +9,7 @@ abstract class EntityCatalog<
         EntityIdType: Identification,
         EntityTypeClass: EntityType<EntityIdType>
 > {
+    abstract val catalog: Catalog
     private val registry: SortedMap<EntityIdType, EntityTypeClass> = sortedMapOf()
 
     operator fun get(id: EntityIdType): EntityTypeClass? = registry[id]

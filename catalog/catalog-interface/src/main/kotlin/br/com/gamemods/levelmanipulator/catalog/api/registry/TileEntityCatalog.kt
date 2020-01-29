@@ -1,5 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.registry
 
+import br.com.gamemods.levelmanipulator.catalog.api.Catalog
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 import br.com.gamemods.levelmanipulator.catalog.api.data.TileEntityType
 import java.util.*
@@ -8,6 +9,7 @@ abstract class TileEntityCatalog<
         TileEntityIdType: Identification,
         TileEntityClass: TileEntityType<TileEntityIdType>
 > {
+    abstract val catalog: Catalog
     private val registry: SortedMap<TileEntityIdType, TileEntityClass> = sortedMapOf()
 
     operator fun get(id: TileEntityIdType): TileEntityClass? = registry[id]

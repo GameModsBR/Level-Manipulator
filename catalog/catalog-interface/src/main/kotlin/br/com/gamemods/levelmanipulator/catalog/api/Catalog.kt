@@ -10,7 +10,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.nio.charset.Charset
 
-abstract class Catalog {
+abstract class Catalog(val namespace: String) {
     abstract val blockStates: BlockStateCatalog<*, *, *>
     abstract val items: ItemCatalog<*, *, *, *>
     abstract val entityTypes: EntityCatalog<*, *>

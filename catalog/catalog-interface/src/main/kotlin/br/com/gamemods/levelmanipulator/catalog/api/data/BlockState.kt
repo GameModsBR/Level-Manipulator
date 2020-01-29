@@ -1,8 +1,10 @@
 package br.com.gamemods.levelmanipulator.catalog.api.data
 
+import br.com.gamemods.levelmanipulator.catalog.api.Catalog
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalBlockState
 
 abstract class BlockState<IdType: Identification, StateType: Identification> {
+    abstract val catalog: Catalog
     abstract val id: IdType
     abstract val state: StateType
     abstract val universal: UniversalBlockState
