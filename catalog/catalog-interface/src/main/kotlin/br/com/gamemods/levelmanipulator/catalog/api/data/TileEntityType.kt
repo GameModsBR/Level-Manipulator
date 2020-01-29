@@ -12,7 +12,7 @@ abstract class TileEntityType<IdType: Identification> {
     fun component2() = universal
 
     override fun toString(): String {
-        return "TileEntity(id=$id, universal=$universal)"
+        return "TileEntity(id=$id, universal=${try{universal}catch(e: UninitializedPropertyAccessException){"<missing>"}})"
     }
 
     override fun equals(other: Any?): Boolean {

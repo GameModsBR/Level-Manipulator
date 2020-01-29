@@ -6,10 +6,10 @@ import br.com.gamemods.levelmanipulator.catalog.java.legacy.LegacyJavaEditionCat
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
 class LegacyJavaEditionItem internal constructor(
-    override val catalog: LegacyJavaEditionCatalog,
     override val id: NumericalIdentification,
     override val meta: NumericalIdentification?,
     override val block: LegacyJavaEditionBlockState?
 ) : Item<NumericalIdentification, NumericalIdentification, LegacyJavaEditionBlockState>() {
+    override val catalog get() = LegacyJavaEditionCatalog
     override lateinit var universal: UniversalItem
 }

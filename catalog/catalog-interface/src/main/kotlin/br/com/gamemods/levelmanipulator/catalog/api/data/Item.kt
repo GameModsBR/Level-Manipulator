@@ -16,7 +16,7 @@ abstract class Item<IdType: Identification, MetaType: Identification, BlockType:
     fun component4() = universal
 
     override fun toString(): String {
-        return "Item(id=$id, meta=$meta, block=$block, universal=$universal)"
+        return "Item(id=$id, meta=$meta, block=$block, universal=${try{universal}catch(e: UninitializedPropertyAccessException){"<missing>"}})"
     }
 
     override fun equals(other: Any?): Boolean {

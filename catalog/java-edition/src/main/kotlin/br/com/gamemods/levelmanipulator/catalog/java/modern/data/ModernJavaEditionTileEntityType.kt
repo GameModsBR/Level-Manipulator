@@ -6,8 +6,8 @@ import br.com.gamemods.levelmanipulator.catalog.java.legacy.LegacyJavaEditionCat
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalTileEntityType
 
 class ModernJavaEditionTileEntityType internal constructor(
-    override val catalog: LegacyJavaEditionCatalog,
     override val id: NamespacedIdentification
 ) : TileEntityType<NamespacedIdentification>() {
+    override val catalog get() = LegacyJavaEditionCatalog
     override lateinit var universal: UniversalTileEntityType
 }

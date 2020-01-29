@@ -6,8 +6,8 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.LegacyBedrockEdit
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalTileEntityType
 
 class LegacyBedrockEditionTileEntityType internal constructor(
-    override val catalog: LegacyBedrockEditionCatalog,
     override val id: StringIdentification
 ): TileEntityType<StringIdentification>(){
+    override val catalog get() = LegacyBedrockEditionCatalog
     override lateinit var universal: UniversalTileEntityType
 }

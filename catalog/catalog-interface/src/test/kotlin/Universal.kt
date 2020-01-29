@@ -6,7 +6,7 @@ import kotlin.test.Test
 class Universal {
     @Test
     fun testSomeBlocks() {
-        val gravel = UniversalCatalog.blockStates["minecraft:gravel"]
+        val gravel = UniversalCatalog.blockStates["universal-minecraft:gravel"]
         println(gravel)
     }
 }

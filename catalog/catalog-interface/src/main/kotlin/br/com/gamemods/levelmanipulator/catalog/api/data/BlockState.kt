@@ -14,7 +14,8 @@ abstract class BlockState<IdType: Identification, StateType: Identification> {
     fun component3() = universal
 
     override fun toString(): String {
-        return "BlockState(id=$id, state=$state, universal=$universal)"
+        val stateStr = state.toString()
+        return "BlockState(catalog=${catalog.namespace}, id=$id${if(stateStr.isNotEmpty()) ", state=$stateStr" else ""}, universal=${try{universal}catch(e: UninitializedPropertyAccessException){"<missing>"}})"
     }
 
     override fun equals(other: Any?): Boolean {

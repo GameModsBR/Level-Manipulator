@@ -7,10 +7,10 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.ModernBedrockEdit
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
 class ModernBedrockEditionItem internal constructor(
-    override val catalog: ModernBedrockEditionCatalog,
     override val id: NamespacedIdentification,
     override val meta: NumericalIdentification?,
     override val block: ModernBedrockEditionBlockState?
 ) : Item<NamespacedIdentification, NumericalIdentification, ModernBedrockEditionBlockState>() {
+    override val catalog get() = ModernBedrockEditionCatalog
     override lateinit var universal: UniversalItem
 }

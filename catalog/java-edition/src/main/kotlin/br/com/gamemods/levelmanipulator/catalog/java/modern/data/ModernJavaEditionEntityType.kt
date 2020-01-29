@@ -6,8 +6,8 @@ import br.com.gamemods.levelmanipulator.catalog.java.legacy.LegacyJavaEditionCat
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalEntityType
 
 class ModernJavaEditionEntityType internal constructor(
-    override val catalog: LegacyJavaEditionCatalog,
     override val id: NamespacedIdentification
 ): EntityType<NamespacedIdentification>() {
+    override val catalog get() = LegacyJavaEditionCatalog
     override lateinit var universal: UniversalEntityType
 }

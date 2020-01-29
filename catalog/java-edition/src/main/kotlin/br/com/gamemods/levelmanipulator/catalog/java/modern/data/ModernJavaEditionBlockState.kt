@@ -7,9 +7,9 @@ import br.com.gamemods.levelmanipulator.catalog.java.legacy.LegacyJavaEditionCat
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalBlockState
 
 class ModernJavaEditionBlockState internal constructor(
-    override val catalog: LegacyJavaEditionCatalog,
     override val id: NamespacedIdentification,
     override val state: StringKeyValueIdentification
 ): BlockState<NamespacedIdentification, StringKeyValueIdentification>() {
+    override val catalog get() = LegacyJavaEditionCatalog
     override lateinit var universal: UniversalBlockState
 }

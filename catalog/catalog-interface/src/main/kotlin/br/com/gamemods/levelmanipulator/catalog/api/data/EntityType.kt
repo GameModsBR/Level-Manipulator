@@ -12,7 +12,7 @@ abstract class EntityType<IdType: Identification> {
     fun component2() = universal
 
     override fun toString(): String {
-        return "EntityType(id=$id, universal=$universal)"
+        return "EntityType(id=$id, universal=${try{universal}catch(e: UninitializedPropertyAccessException){"<missing>"}})"
     }
 
     override fun equals(other: Any?): Boolean {

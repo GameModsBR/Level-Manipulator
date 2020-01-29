@@ -6,10 +6,10 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.LegacyBedrockEdit
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
 class LegacyBedrockEditionItem internal constructor(
-    override val catalog: LegacyBedrockEditionCatalog,
     override val id: NumericalIdentification,
     override val meta: NumericalIdentification?,
     override val block: LegacyBedrockEditionBlockState?
 ): Item<NumericalIdentification, NumericalIdentification, LegacyBedrockEditionBlockState>() {
+    override val catalog get() = LegacyBedrockEditionCatalog
     override lateinit var universal: UniversalItem
 }

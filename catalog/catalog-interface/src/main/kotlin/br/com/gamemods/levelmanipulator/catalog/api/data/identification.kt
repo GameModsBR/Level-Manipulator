@@ -208,11 +208,11 @@ class SingleLayerCompoundIdentification(compound: NbtCompound): Identification()
         val type = str.last()
         str = str.substring(0, str.lastIndex)
         val tag = when (type) {
-            'I' -> NbtInt(str.toInt())
-            'B' -> NbtByte(str.toByte())
-            'S' -> NbtShort(str.toShort())
-            'L' -> NbtLong(str.toLong())
-            'D' -> NbtDouble(str.toDouble())
+            'i' -> NbtInt(str.toInt())
+            'b' -> NbtByte(str.toByte())
+            's' -> NbtShort(str.toShort())
+            'l' -> NbtLong(str.toLong())
+            'd' -> NbtDouble(str.toDouble())
             '\"' -> {
                 check(str.length > 2) {
                     "Invalid string key-value id: $original, contains empty association."
@@ -226,17 +226,34 @@ class SingleLayerCompoundIdentification(compound: NbtCompound): Identification()
         }
         entry[0] to tag
     }.toTypedArray()))
+    
     constructor(joined: String): this(joined, joined.split(';'))
+    
+    constructor(mapped: Map<String, String>): this(NbtCompound(mapped.map { (property, propertyValue) ->
+        val dot = property.lastIndexOf('.')
+        val propertyName = property.substring(0, dot)
+        val tag = when (property[dot + 1]) {
+            'b' -> NbtByte(propertyValue.toByte())
+            'd' -> NbtDouble(propertyValue.toDouble())
+            'f' -> NbtFloat(propertyValue.toFloat())
+            'i' -> NbtInt(propertyValue.toInt())
+            'l' -> NbtLong(propertyValue.toLong())
+            's' -> NbtShort(propertyValue.toShort())
+            'c' -> NbtString(propertyValue)
+            else -> error("Illegal property key $property")
+        }
+        propertyName to tag
+    }.toMap()))
 
     override fun toString(): String {
         return nbt.asSequence().map { (key, nbt) ->
             val value = when (nbt) {
-                is NbtInt -> "${nbt.value}I"
-                is NbtByte -> "${nbt.value}B"
-                is NbtShort -> "${nbt.value}S"
-                is NbtLong -> "${nbt.value}L"
-                is NbtFloat -> "${nbt.value}F"
-                is NbtDouble -> "${nbt.value}D"
+                is NbtInt -> "${nbt.value}i"
+                is NbtByte -> "${nbt.value}b"
+                is NbtShort -> "${nbt.value}s"
+                is NbtLong -> "${nbt.value}l"
+                is NbtFloat -> "${nbt.value}f"
+                is NbtDouble -> "${nbt.value}d"
                 is NbtString -> {
                     val str = nbt.value
                     check('\"' !in str) {
