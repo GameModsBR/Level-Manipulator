@@ -11,9 +11,13 @@ class UniversalBlockState private constructor(
 ): BlockState<NamespacedIdentification, StringKeyValueIdentification>() {
     override val catalog get() = UniversalCatalog
     override val universal get() = this
-    
+
     internal constructor(id: String): this(NamespacedIdentification(id), StringKeyValueIdentification.EMPTY)
-    internal constructor(id: String, state: String): this(NamespacedIdentification(id), StringKeyValueIdentification(state))
+    internal constructor(id: String, state: Map<String, String>): this(
+        NamespacedIdentification(id),
+        state.takeUnless { it.isEmpty() }
+            ?.let { StringKeyValueIdentification(it) } ?: StringKeyValueIdentification.EMPTY
+    )
 
     override fun toString(): String {
         val stateStr = state.toString()

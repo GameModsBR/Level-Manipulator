@@ -5,7 +5,7 @@ import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentificatio
 import br.com.gamemods.levelmanipulator.catalog.api.data.StringKeyValueIdentification
 import br.com.gamemods.levelmanipulator.catalog.universal.UniversalCatalog
 
-class UniversalItem private constructor(
+class UniversalItem internal constructor(
     override val id: NamespacedIdentification,
     override val meta: StringKeyValueIdentification?,
     override val block: UniversalBlockState?
