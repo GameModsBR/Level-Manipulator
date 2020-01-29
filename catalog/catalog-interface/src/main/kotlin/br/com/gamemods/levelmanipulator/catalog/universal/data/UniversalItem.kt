@@ -3,6 +3,7 @@ package br.com.gamemods.levelmanipulator.catalog.universal.data
 import br.com.gamemods.levelmanipulator.catalog.api.data.Item
 import br.com.gamemods.levelmanipulator.catalog.api.data.NamespacedIdentification
 import br.com.gamemods.levelmanipulator.catalog.api.data.StringKeyValueIdentification
+import br.com.gamemods.levelmanipulator.catalog.universal.UniversalCatalog
 
 class UniversalItem private constructor(
     override val id: NamespacedIdentification,
@@ -14,7 +15,8 @@ class UniversalItem private constructor(
         meta?.let { StringKeyValueIdentification(it) },
         block
     )
-    
+
+    override val catalog get() = UniversalCatalog
     override val universal get() = this
 
 
