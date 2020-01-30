@@ -1,0 +1,127 @@
+types:
+  boolean:
+    0: false
+    1: true
+  face_index:
+    0: down
+    1: up
+    2: north
+    3: south
+    4: west
+    5: east
+  horizontal_index:
+    0: south
+    1: west
+    2: north
+    3: east
+  opposite_horizontal_index:
+    0: north
+    1: east
+    2: south
+    3: west
+  face_index_opposite_horizon:
+    0: down
+    1: up
+    2: south
+    3: north
+    4: east
+    5: west
+  door_hige:
+    0: left
+    1: right
+  door_half:
+    0: lower
+    1: upper
+  4bits:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+    9: 9
+    10: 10
+    11: 11
+    12: 12
+    13: 13
+    14: 14
+    15: 15
+  upside_down_stairs:
+    0: bottom
+    1: top
+  #TODO rail_shape
+  rail_shape:
+    0: todo
+    1: todo
+    2: todo
+    3: todo
+    4: todo
+    5: todo
+    # Wiki says that 6, 7, 8, 9 exists: https://minecraft.gamepedia.com/Block_states
+    6: todo
+    7: todo
+    8: todo
+    9: todo
+  anvil_damage:
+    broken: broken
+    slightly_damaged: slightly_damaged
+    undamaged: undamaged
+    very_damaged: very_damaged
+  sapling_age:
+    0: 0
+    1: 1
+  wood_type:
+    acacia: acacia
+    birch: birch
+    dark_oak: dark_oak
+    jungle: jungle
+    oak: oak
+    spruce: spruce
+  scaffolding_distance:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+  bamboo_leaf:
+    large_leaves: large
+    no_leaves: none
+    small_leaves: small
+  bamboo_thickness:
+    thick: 1
+    thin: 0
+  bed_part:
+    0: foot
+    1: head
+  honey_level:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+  crop_growth:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+  bell_attachment:
+    hanging: ceiling
+    multiple: double_wall
+    side: single_wall
+    standing: floor
+  axis:
+    x: x
+    y: y
+    z: z
+
