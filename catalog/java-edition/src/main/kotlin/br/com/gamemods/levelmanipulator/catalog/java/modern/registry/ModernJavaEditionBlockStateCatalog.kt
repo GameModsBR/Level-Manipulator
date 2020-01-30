@@ -13,5 +13,5 @@ object ModernJavaEditionBlockStateCatalog: BlockStateCatalog<
 >() {
     override val catalog get() = ModernJavaEditionCatalog
     override fun get(id: String) = get(NamespacedIdentification(id))
-    override fun get(id: String, data: String) = get(NamespacedIdentification(id), StringKeyValueIdentification(data))
+    override fun getIfRegistered(id: String, data: String) = getIfRegistered(NamespacedIdentification(id), StringKeyValueIdentification(data))
 }

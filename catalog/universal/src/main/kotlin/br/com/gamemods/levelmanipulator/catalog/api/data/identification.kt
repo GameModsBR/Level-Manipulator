@@ -143,7 +143,7 @@ class StringKeyValueIdentification(map: Map<String, String>): Identification() {
     companion object {
         val EMPTY = StringKeyValueIdentification()
     }
-    private val map: Map<String, String> = Collections.unmodifiableMap(map.toMap())
+    val map: Map<String, String> = Collections.unmodifiableMap(map.toMap())
 
     constructor(): this(emptyMap())
     

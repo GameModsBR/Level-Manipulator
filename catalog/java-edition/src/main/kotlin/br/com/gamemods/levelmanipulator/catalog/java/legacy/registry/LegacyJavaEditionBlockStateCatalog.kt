@@ -12,5 +12,5 @@ object LegacyJavaEditionBlockStateCatalog: BlockStateCatalog<
 >() {
     override val catalog get() = LegacyJavaEditionCatalog
     override fun get(id: String) = get(NumericalIdentification(id))
-    override fun get(id: String, data: String) = get(NumericalIdentification(id), NumericalIdentification(data))
+    override fun getIfRegistered(id: String, data: String) = getIfRegistered(NumericalIdentification(id), NumericalIdentification(data))
 }

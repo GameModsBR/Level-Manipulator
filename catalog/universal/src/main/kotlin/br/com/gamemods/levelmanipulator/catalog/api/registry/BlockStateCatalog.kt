@@ -4,6 +4,7 @@ import br.com.gamemods.levelmanipulator.catalog.api.Catalog
 import br.com.gamemods.levelmanipulator.catalog.api.data.BlockState
 import br.com.gamemods.levelmanipulator.catalog.api.data.Identification
 import java.util.*
+import kotlin.NoSuchElementException
 
 abstract class BlockStateCatalog<
         BlockIdType: Identification,
@@ -14,13 +15,15 @@ abstract class BlockStateCatalog<
     private val registry: SortedMap<BlockIdType, SortedMap<BlockDataType, StateType>> = sortedMapOf()
 
     operator fun get(id: BlockIdType): List<StateType> = registry[id]?.values?.toList() ?: emptyList()
-    operator fun get(id: BlockIdType, data: BlockDataType): StateType? = registry[id]?.get(data)
-    operator fun get(reference: BlockState<BlockIdType, BlockDataType>) = get(reference.id, reference.state)
+    operator fun get(id: BlockIdType, data: BlockDataType) = getIfRegistered(id, data) ?: throw NoSuchElementException("$id;$data")
+    fun getIfRegistered(id: BlockIdType, data: BlockDataType): StateType? = registry[id]?.get(data)
+    fun getIfRegistered(reference: BlockState<BlockIdType, BlockDataType>) = getIfRegistered(reference.id, reference.state)
 
 
     abstract operator fun get(id: String): List<StateType>
-    abstract operator fun get(id: String, data: String): StateType?
-    
+    abstract fun getIfRegistered(id: String, data: String): StateType?
+    operator fun get(id: String, data: String) = getIfRegistered(id, data) ?: NoSuchElementException("$id;$data")
+
     @Suppress("NOTHING_TO_INLINE")
     @JvmSynthetic
     inline operator fun contains(pair: Pair<BlockIdType, BlockDataType>) = contains(pair.first, pair.second)
@@ -30,7 +33,7 @@ abstract class BlockStateCatalog<
 
     @JvmName("register")
     operator fun plusAssign(block: StateType) {
-        val current = this[block]
+        val current = this.getIfRegistered(block)
         require(current == null) {
             "The block state $block is already registered as $current"
         }
