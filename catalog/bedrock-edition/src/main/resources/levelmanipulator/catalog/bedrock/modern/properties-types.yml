@@ -231,4 +231,10 @@ types:
     6: 6
     7: 7
     8: 8
-
+  double_plant_type:
+    fern: large_fern
+    grass: tall_grass
+    paeonia: peony
+    rose: rose
+    sunflower: sunflower
+    syringa: lilac
