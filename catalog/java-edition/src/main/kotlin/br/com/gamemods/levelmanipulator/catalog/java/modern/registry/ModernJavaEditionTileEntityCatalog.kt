@@ -5,10 +5,14 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.TileEntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.modern.ModernJavaEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.modern.data.ModernJavaEditionTileEntityType
 
-object ModernJavaEditionTileEntityCatalog: TileEntityCatalog<
+class ModernJavaEditionTileEntityCatalog private constructor(catalog: ModernJavaEditionCatalog): TileEntityCatalog<
+        ModernJavaEditionCatalog,
         NamespacedIdentification,
         ModernJavaEditionTileEntityType
->() {
-    override val catalog get() = ModernJavaEditionCatalog
+>(ModernJavaEditionCatalog) {
     override fun get(id: String) = get(NamespacedIdentification(id))
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: ModernJavaEditionCatalog) = ModernJavaEditionTileEntityCatalog(catalog)
+    }
 }

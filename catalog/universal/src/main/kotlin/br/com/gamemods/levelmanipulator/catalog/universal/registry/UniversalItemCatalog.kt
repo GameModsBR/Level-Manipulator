@@ -7,13 +7,17 @@ import br.com.gamemods.levelmanipulator.catalog.universal.UniversalCatalog
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalBlockState
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalItem
 
-object UniversalItemCatalog: ItemCatalog<
+class UniversalItemCatalog private constructor(catalog: UniversalCatalog): ItemCatalog<
+        UniversalCatalog,
         NamespacedIdentification,
         StringKeyValueIdentification,
         UniversalBlockState,
         UniversalItem
->() {
-    override val catalog get() = UniversalCatalog
+>(catalog) {
     override fun get(id: String) = get(NamespacedIdentification(id))
     override fun get(id: String, data: String?) = get(NamespacedIdentification(id), data?.let { StringKeyValueIdentification(it) })
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: UniversalCatalog) = UniversalItemCatalog(catalog)
+    }
 }

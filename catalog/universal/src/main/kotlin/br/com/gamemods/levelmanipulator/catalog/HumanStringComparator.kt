@@ -16,4 +16,8 @@ class HumanStringComparator : Comparator<String> {
         // return 0 if no digits found
         return if (num.isEmpty()) 0 else num.toInt()
     }
+
+    companion object {
+        val INSTANCE = HumanStringComparator()
+    }
 }

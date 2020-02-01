@@ -5,10 +5,14 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.EntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.LegacyBedrockEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.legacy.data.LegacyBedrockEditionEntityType
 
-object LegacyBedrockEditionEntityCatalog: EntityCatalog<
+class LegacyBedrockEditionEntityCatalog private constructor(catalog: LegacyBedrockEditionCatalog): EntityCatalog<
+        LegacyBedrockEditionCatalog,
         StringIdentification, 
         LegacyBedrockEditionEntityType
->(){
-    override val catalog get() = LegacyBedrockEditionCatalog
+>(catalog){
     override fun get(id: String) = get(StringIdentification(id))
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: LegacyBedrockEditionCatalog) = LegacyBedrockEditionEntityCatalog(catalog)
+    }
 }

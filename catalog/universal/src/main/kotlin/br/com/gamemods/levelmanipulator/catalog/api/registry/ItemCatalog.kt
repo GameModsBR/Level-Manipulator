@@ -7,12 +7,14 @@ import br.com.gamemods.levelmanipulator.catalog.api.data.Item
 import java.util.*
 
 abstract class ItemCatalog<
+        CatalogType: Catalog,
         ItemIdType: Identification,
         ItemDataType: Identification,
         BlockStateType: BlockState<*, *>,
         ItemType: Item<ItemIdType, ItemDataType, BlockStateType>
-> {
-    abstract val catalog: Catalog
+>(
+    val catalog: CatalogType
+) {
     private val registry: SortedMap<ItemIdType, SortedMap<ItemDataType?, ItemType>> = sortedMapOf()
 
     operator fun get(id: ItemIdType): List<ItemType> = registry[id]?.values?.toList() ?: emptyList()

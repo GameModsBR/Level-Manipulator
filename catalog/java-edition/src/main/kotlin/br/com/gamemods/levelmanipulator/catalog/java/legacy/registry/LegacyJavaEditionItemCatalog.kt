@@ -6,13 +6,17 @@ import br.com.gamemods.levelmanipulator.catalog.java.legacy.LegacyJavaEditionCat
 import br.com.gamemods.levelmanipulator.catalog.java.legacy.data.LegacyJavaEditionBlockState
 import br.com.gamemods.levelmanipulator.catalog.java.legacy.data.LegacyJavaEditionItem
 
-object LegacyJavaEditionItemCatalog: ItemCatalog<
+class LegacyJavaEditionItemCatalog private constructor(catalog: LegacyJavaEditionCatalog): ItemCatalog<
+        LegacyJavaEditionCatalog,
         NumericalIdentification,
         NumericalIdentification,
         LegacyJavaEditionBlockState,
         LegacyJavaEditionItem
->() {
-    override val catalog get() = LegacyJavaEditionCatalog
+>(LegacyJavaEditionCatalog) {
     override fun get(id: String) = get(NumericalIdentification(id))
     override fun get(id: String, data: String?) = get(NumericalIdentification(id), data?.let { NumericalIdentification(it) })
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: LegacyJavaEditionCatalog) = LegacyJavaEditionItemCatalog(catalog)
+    }
 }

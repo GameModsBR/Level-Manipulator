@@ -5,10 +5,14 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.EntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.legacy.LegacyJavaEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.java.legacy.data.LegacyJavaEditionEntityType
 
-object LegacyJavaEditionEntityCatalog: EntityCatalog<
+class LegacyJavaEditionEntityCatalog private constructor(catalog: LegacyJavaEditionCatalog): EntityCatalog<
+        LegacyJavaEditionCatalog,
         StringIdentification,
         LegacyJavaEditionEntityType
->() {
-    override val catalog get() = LegacyJavaEditionCatalog
+>(LegacyJavaEditionCatalog) {
     override fun get(id: String) = get(StringIdentification(id))
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: LegacyJavaEditionCatalog) = LegacyJavaEditionEntityCatalog(catalog)
+    }
 }

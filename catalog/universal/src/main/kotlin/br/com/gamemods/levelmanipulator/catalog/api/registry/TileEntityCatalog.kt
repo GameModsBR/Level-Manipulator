@@ -6,10 +6,12 @@ import br.com.gamemods.levelmanipulator.catalog.api.data.TileEntityType
 import java.util.*
 
 abstract class TileEntityCatalog<
+        CatalogType: Catalog,
         TileEntityIdType: Identification,
         TileEntityClass: TileEntityType<TileEntityIdType>
-> {
-    abstract val catalog: Catalog
+>(
+    val catalog: CatalogType
+) {
     private val registry: SortedMap<TileEntityIdType, TileEntityClass> = sortedMapOf()
 
     operator fun get(id: TileEntityIdType): TileEntityClass? = registry[id]

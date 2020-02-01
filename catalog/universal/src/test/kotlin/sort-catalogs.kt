@@ -10,7 +10,7 @@ fun main() {
 }
 
 private fun sort(file: File) {
-    val comparator = HumanStringComparator()
+    val comparator = HumanStringComparator.INSTANCE
     val registry = TreeMap<String, TreeMap<String, TreeSet<String>>>(comparator)
     var currentBlock: String? = null
     file.bufferedReader().useLines { seq  -> 

@@ -5,10 +5,14 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.EntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.ModernBedrockEditionCatalog
 import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.data.ModernBedrockEditionEntityType
 
-object ModernBedrockEditionEntityCatalog: EntityCatalog<
+class ModernBedrockEditionEntityCatalog private constructor(catalog: ModernBedrockEditionCatalog): EntityCatalog<
+        ModernBedrockEditionCatalog,
         NamespacedIdentification,
         ModernBedrockEditionEntityType
->() {
-    override val catalog get() = ModernBedrockEditionCatalog
+>(catalog) {
     override fun get(id: String) = get(NamespacedIdentification(id))
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: ModernBedrockEditionCatalog) = ModernBedrockEditionEntityCatalog(catalog)
+    }
 }

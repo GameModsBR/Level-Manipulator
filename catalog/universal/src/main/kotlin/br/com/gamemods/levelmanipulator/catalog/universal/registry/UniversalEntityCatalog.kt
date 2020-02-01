@@ -5,7 +5,14 @@ import br.com.gamemods.levelmanipulator.catalog.api.registry.EntityCatalog
 import br.com.gamemods.levelmanipulator.catalog.universal.UniversalCatalog
 import br.com.gamemods.levelmanipulator.catalog.universal.data.UniversalEntityType
 
-object UniversalEntityCatalog: EntityCatalog<NamespacedIdentification, UniversalEntityType>() {
-    override val catalog get() = UniversalCatalog
+class UniversalEntityCatalog private constructor(catalog: UniversalCatalog): EntityCatalog<
+        UniversalCatalog,
+        NamespacedIdentification,
+        UniversalEntityType
+>(catalog) {
     override fun get(id: String) = get(NamespacedIdentification(id))
+
+    internal companion object {
+        @JvmSynthetic operator fun invoke(catalog: UniversalCatalog) = UniversalEntityCatalog(catalog)
+    }
 }

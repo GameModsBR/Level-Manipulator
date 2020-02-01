@@ -1,5 +1,6 @@
 package br.com.gamemods.levelmanipulator.catalog.api.data
 
+import br.com.gamemods.levelmanipulator.catalog.HumanStringComparator
 import br.com.gamemods.nbtmanipulator.*
 import java.util.*
 
@@ -143,7 +144,7 @@ class StringKeyValueIdentification(map: Map<String, String>): Identification() {
     companion object {
         val EMPTY = StringKeyValueIdentification()
     }
-    val map: Map<String, String> = Collections.unmodifiableMap(map.toMap())
+    val map: Map<String, String> = Collections.unmodifiableMap(map.toSortedMap(HumanStringComparator.INSTANCE))
 
     constructor(): this(emptyMap())
     

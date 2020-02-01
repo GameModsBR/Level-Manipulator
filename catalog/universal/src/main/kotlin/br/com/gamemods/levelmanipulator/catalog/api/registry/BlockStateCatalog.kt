@@ -7,11 +7,13 @@ import java.util.*
 import kotlin.NoSuchElementException
 
 abstract class BlockStateCatalog<
+        CatalogType: Catalog,
         BlockIdType: Identification,
         BlockDataType: Identification,
         StateType: BlockState<BlockIdType, BlockDataType>
-> {
-    abstract val catalog: Catalog
+>(
+    val catalog: CatalogType
+) {
     private val registry: SortedMap<BlockIdType, SortedMap<BlockDataType, StateType>> = sortedMapOf()
 
     operator fun get(id: BlockIdType): List<StateType> = registry[id]?.values?.toList() ?: emptyList()
@@ -50,7 +52,7 @@ abstract class BlockStateCatalog<
     }
 
     override fun toString(): String {
-        return "BlockStateCatalog(registry=<${registry.size} states>)"
+        return "BlockStateCatalog(registry=<${registry.size} blocks>)"
     }
 
 }

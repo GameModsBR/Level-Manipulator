@@ -9,10 +9,10 @@ import br.com.gamemods.levelmanipulator.catalog.universal.registry.UniversalItem
 import br.com.gamemods.levelmanipulator.catalog.universal.registry.UniversalTileEntityCatalog
 
 object UniversalCatalog: Catalog("universal") {
-    override val blockStates get() = UniversalBlockStateCatalog
-    override val items get() = UniversalItemCatalog
-    override val entityTypes get() = UniversalEntityCatalog
-    override val tileEntities get() = UniversalTileEntityCatalog
+    override val blockStates = UniversalBlockStateCatalog(this)
+    override val items = UniversalItemCatalog(this)
+    override val entityTypes = UniversalEntityCatalog(this)
+    override val tileEntities = UniversalTileEntityCatalog(this)
 
     init {
         loadBlockStatesIni("/levelmanipulator/catalog/universal/block-states.ini") { blockId, blockData ->

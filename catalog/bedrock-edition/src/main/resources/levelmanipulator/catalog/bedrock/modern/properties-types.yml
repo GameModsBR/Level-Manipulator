@@ -2,6 +2,9 @@ types:
   boolean:
     0: false
     1: true
+  inverse_boolean:
+    0: true
+    1: false
   face_index:
     0: down
     1: up
@@ -26,6 +29,13 @@ types:
     3: north
     4: east
     5: west
+  torch_facing_direction:
+    east: east
+    north: north
+    south: south
+    unknown: undefined
+    west: west
+    top: top
   door_hige:
     0: left
     1: right
@@ -52,19 +62,17 @@ types:
   upside_down_stairs:
     0: bottom
     1: top
-  #TODO rail_shape
   rail_shape:
-    0: todo
-    1: todo
-    2: todo
-    3: todo
-    4: todo
-    5: todo
-    # Wiki says that 6, 7, 8, 9 exists: https://minecraft.gamepedia.com/Block_states
-    6: todo
-    7: todo
-    8: todo
-    9: todo
+    0: north_south
+    1: east_west
+    2: ascending_east
+    3: ascending_west
+    4: ascending_north
+    5: ascending_south
+    6: south_east
+    7: south_west
+    8: north_west
+    9: north_east
   anvil_damage:
     broken: broken
     slightly_damaged: slightly_damaged
@@ -77,6 +85,7 @@ types:
     acacia: acacia
     birch: birch
     dark_oak: dark_oak
+    darkoak: dark_oak
     jungle: jungle
     oak: oak
     spruce: spruce
@@ -124,4 +133,102 @@ types:
     x: x
     y: y
     z: z
+  horizontal_axis_index:
+    0: x
+    1: z
+  cake_bites:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+  chemistry_table_type:
+    compound_creator: compound_creator
+    element_constructor: element_constructor
+    lab_table: lab_table
+    material_reducer: material_reducer
+  wall_block_type:
+    andesite: andesite
+    brick: brick
+    cobblestone: cobblestone
+    diorite: diorite
+    end_brick: end_stone_brick
+    granite: granite
+    mossy_cobblestone: mossy_cobblestone
+    mossy_stone_brick: mossy_stone_brick
+    nether_brick: nether_brick
+    prismarine: prismarine
+    red_nether_brick: red_nether_brick
+    red_sandstone: red_sandstone
+    sandstone: sandstone
+    stone_brick: stone_brick
+  torch_facing:
+    east: east
+    north: north
+    south: south
+    west: west
+  composter_level:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
+  color:
+    black: black
+    blue: blue
+    brown: brown
+    cyan: cyan
+    gray: gray
+    green: green
+    light_blue: light_blue
+    lime: lime
+    magenta: magenta
+    orange: orange
+    pink: pink
+    purple: purple
+    red: red
+    silver: light_gray
+    white: white
+    yellow: yellow
+  coral:
+    blue: tube
+    pink: brain
+    purple: bubble
+    red: fire
+    yellow: horn
+  double_plant:
+    fern: large_fern
+    grass: tall_grass
+    paeonia: peony
+    rose: rose
+    sunflower: sunflower
+    syringa: lilac
+  cauldron_liquid:
+    lava: lava
+    water: water
+  cauldron_fill:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+  composter_fill:
+    0: 0
+    1: 1
+    2: 2
+    3: 3
+    4: 4
+    5: 5
+    6: 6
+    7: 7
+    8: 8
 
