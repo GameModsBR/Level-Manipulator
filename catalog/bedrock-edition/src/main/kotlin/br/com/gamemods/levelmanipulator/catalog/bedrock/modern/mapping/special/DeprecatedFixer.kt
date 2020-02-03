@@ -6,6 +6,8 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.mapping.SpecialMa
 import java.util.concurrent.atomic.AtomicBoolean
 
 object DeprecatedFixer: SpecialMapper() {
+    private val removeFrom = setOf("bone_block", "hay_block")
+
     override fun postMap(
         blockState: ModernBedrockEditionBlockState,
         mappedOriginProperties: MutableSet<String>,
@@ -14,7 +16,7 @@ object DeprecatedFixer: SpecialMapper() {
         universalPropertyNames: Set<String>,
         shouldReverseBind: AtomicBoolean
     ): Boolean {
-        if (blockState.id.name == "bone_block") {
+        if (blockState.id.name in removeFrom) {
             mappedTargetProperties -= "facing"
             if (blockState.state.compound.getInt("deprecated") != 0) {
                 shouldReverseBind.set(false)

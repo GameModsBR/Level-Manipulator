@@ -6,7 +6,9 @@ import br.com.gamemods.levelmanipulator.catalog.bedrock.modern.mapping.SpecialMa
 import java.util.concurrent.atomic.AtomicBoolean
 
 object FacingDirectionStartingOn2: SpecialMapper() {
-    private val specialIds = setOf("glazed_terracotta", "blast_furnace", "furnace", "smoker", "chest", "ender_chest")
+    private val specialIds = setOf(
+        "glazed_terracotta", "blast_furnace", "furnace", "smoker", "chest", "ender_chest", "hopper"
+    )
 
     override fun postMap(
         blockState: ModernBedrockEditionBlockState,
