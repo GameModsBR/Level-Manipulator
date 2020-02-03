@@ -15,7 +15,7 @@ object AgeProperty: SpecialMapper() {
         shouldReverseBind: AtomicBoolean
     ): Boolean {
         when (blockState.id.name) {
-            "cactus", "chorus_flower", "cocoa", "fire", "frosted_ice", "kelp", "nether_wart", "reeds" -> {
+            "cactus", "chorus_flower", "cocoa", "fire", "frosted_ice", "nether_wart", "reeds" -> {
                 mappedOriginProperties += "age"
                 mappedTargetProperties["age"] = blockState.state.compound["age"]!!.stringValue
             }

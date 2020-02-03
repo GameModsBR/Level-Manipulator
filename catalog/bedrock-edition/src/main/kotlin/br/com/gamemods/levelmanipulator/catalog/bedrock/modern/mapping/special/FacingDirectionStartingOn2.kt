@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 object FacingDirectionStartingOn2: SpecialMapper() {
     private val specialIds = setOf(
-        "glazed_terracotta", "blast_furnace", "furnace", "smoker", "chest", "ender_chest", "hopper"
+        "glazed_terracotta", "blast_furnace", "furnace", "smoker", "chest", "ender_chest", "hopper", "ladder"
     )
 
     override fun postMap(
